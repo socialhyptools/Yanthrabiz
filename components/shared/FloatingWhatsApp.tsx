@@ -15,11 +15,11 @@ export function FloatingWhatsApp() {
         Chat with us on WhatsApp
       </span>
 
-      {/* Button + pulse ring */}
+      {/* Button + pulse ring (desktop only — ping flickers on low-power mobile GPUs) */}
       <span className="relative inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-card hover:bg-[#1ebd5a] hover:scale-105 transition-all duration-200">
         <span
           aria-hidden
-          className="absolute inset-0 rounded-full bg-[#25D366] opacity-60 animate-ping"
+          className="hidden md:block absolute inset-0 rounded-full bg-[#25D366] opacity-60 motion-safe:animate-ping"
         />
         <WhatsAppIcon className="relative h-5 w-5" />
       </span>
