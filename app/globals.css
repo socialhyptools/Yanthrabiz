@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-jakarta), system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-feature-settings: "cv11", "ss01", "ss03";
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-jakarta), system-ui, -apple-system, sans-serif;
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  /* Prevent the browser's native link-drag URL tooltip on click-drag */
+  a,
+  img {
+    -webkit-user-drag: none;
+    user-drag: none;
+  }
+}
+
+@layer utilities {
+  .gradient-hero {
+    background:
+      radial-gradient(at 20% 10%, rgb(26 42 124 / 0.12) 0px, transparent 50%),
+      radial-gradient(at 90% 0%, rgb(218 31 38 / 0.08) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgb(26 42 124 / 0.06) 0px, transparent 50%);
+  }
+
+  .gradient-text-primary {
+    background: linear-gradient(135deg, #1a2a7c 0%, #2e3fa3 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .gradient-text-accent {
+    background: linear-gradient(135deg, #b91c1c 0%, #ef4444 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .mesh-bg {
+    background-image:
+      radial-gradient(circle at 25% 25%, rgb(26 42 124 / 0.06) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgb(218 31 38 / 0.04) 0%, transparent 50%);
+  }
+
+  .glass {
+    background: rgb(255 255 255 / 0.7);
+    backdrop-filter: saturate(140%) blur(12px);
+    -webkit-backdrop-filter: saturate(140%) blur(12px);
+  }
+}

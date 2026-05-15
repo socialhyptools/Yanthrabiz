@@ -1,93 +1,171 @@
-# RaadhaRajenWebsite
+# Yantra Biz — Marketing Website
 
+The marketing and discovery website for [Yantra Biz](https://www.yantrabiz.com), the global marketplace for used industrial machinery. The actual marketplace (buyer app, seller app, web app, admin) lives elsewhere; this site is the brand's landing experience and SEO surface area. CTAs route visitors into the existing app and web app.
 
+## Stack
 
-## Getting started
+| Layer | Tech |
+| --- | --- |
+| Framework | Next.js 15 (App Router) with **static export** |
+| Language | TypeScript |
+| Styling | Tailwind CSS v3 + tailwindcss-animate |
+| Animations | Framer Motion |
+| Icons | lucide-react + inline SVG (social) |
+| Content | Markdown with frontmatter (gray-matter) |
+| Fonts | Plus Jakarta Sans (via `next/font`) |
+| Deploy | Hostinger (any static host) |
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+Static export means every route compiles to a real HTML file in `out/` — no Node runtime required at the host, and excellent SEO out of the box.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-* [Create](https://docs.gitlab.com/user/project/repository/web_editor/#create-a-file) or [upload](https://docs.gitlab.com/user/project/repository/web_editor/#upload-a-file) files
-* [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+## Repository layout
 
 ```
-cd existing_repo
-git remote add origin https://gitlab.com/iedeoservices/raadharajenwebsite.git
-git branch -M main
-git push -uf origin main
+.
+├─ app/                    # Next.js App Router routes
+│  ├─ layout.tsx           # Root layout: nav, footer, JSON-LD, fonts, metadata
+│  ├─ page.tsx             # Home
+│  ├─ industries/
+│  │  ├─ page.tsx          # All industries index
+│  │  └─ [slug]/page.tsx   # Dynamic industry detail (1 per markdown file)
+│  ├─ about/page.tsx
+│  ├─ buy/page.tsx
+│  ├─ sell/page.tsx
+│  ├─ contact/page.tsx
+│  ├─ privacy/page.tsx
+│  ├─ terms/page.tsx
+│  ├─ not-found.tsx
+│  ├─ sitemap.ts           # /sitemap.xml
+│  ├─ robots.ts            # /robots.txt
+│  └─ globals.css
+├─ components/
+│  ├─ layout/              # Navbar, Footer
+│  ├─ home/                # Home page sections
+│  ├─ shared/              # Reveal, CountUp, Container, Prose
+│  ├─ icons/               # Inline social SVG icons
+│  ├─ seo/                 # JSON-LD schema components
+│  └─ ui/                  # Button primitive
+├─ content/
+│  └─ categories/          # 11 markdown files — long-form industry content
+├─ lib/
+│  ├─ site.ts              # ★ Editable site config: brand, URLs, contact info
+│  ├─ industries.ts        # ★ The 11 industries (slug, icon, color, tagline)
+│  ├─ content.ts           # Markdown loader (parses frontmatter + sections)
+│  └─ utils.ts             # cn() className helper
+├─ public/                 # Static assets (logo, .htaccess, favicons)
+├─ next.config.ts          # output: 'export', trailing slash, image config
+├─ tailwind.config.ts      # Brand tokens, fonts, animations
+└─ eslint.config.mjs
 ```
 
-## Integrate with your tools
+## Editing the site
 
-* [Set up project integrations](https://gitlab.com/iedeoservices/raadharajenwebsite/-/settings/integrations)
+**Most copy changes happen in one of three places:**
 
-## Collaborate with your team
+- `lib/site.ts` — brand name, tagline, contact info, social URLs, stats, app store / web app destinations.
+- `lib/industries.ts` — the list of 11 industries shown in navigation and home grid (icon, color, short tagline).
+- `content/categories/*.md` — long-form industry pages (intro, types, benefits, FAQ).
 
-* [Invite team members and collaborators](https://docs.gitlab.com/user/project/members/)
-* [Create a new merge request](https://docs.gitlab.com/user/project/merge_requests/creating_merge_requests/)
-* [Automatically close issues from merge requests](https://docs.gitlab.com/user/project/issues/managing_issues/#closing-issues-automatically)
-* [Enable merge request approvals](https://docs.gitlab.com/user/project/merge_requests/approvals/)
-* [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+Each markdown file follows this structure:
 
-## Test and Deploy
+```markdown
+---
+slug: agriculture-machinery
+title: Agriculture Machinery and Equipment
+hero_title: Buy and Sell Agriculture Machinery Online
+order: 1
+---
 
-Use the built-in continuous integration in GitLab.
+## Intro
+...
 
-* [Get started with GitLab CI/CD](https://docs.gitlab.com/ci/quick_start/)
-* [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/user/application_security/sast/)
-* [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/topics/autodevops/requirements/)
-* [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/user/clusters/agent/)
-* [Set up protected environments](https://docs.gitlab.com/ci/environments/protected_environments/)
+## Types of X
+### Subtype A
+...
 
-***
+## Why Choose Yantra Biz
+...
 
-# Editing this README
+## Benefits of X
+...
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+## Who Can Use These Machines
+- bullet
+- bullet
 
-## Suggestions for a good README
+## Buy or Sell X Today
+...
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+## FAQ
+### Question?
+Answer.
+```
 
-## Name
-Choose a self-explaining name for your project.
+The content loader (`lib/content.ts`) parses this into structured data the category page component renders.
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+## Development
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+```bash
+npm install
+npm run dev           # http://localhost:3000
+```
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+## Production build
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+```bash
+npm run build
+```
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+Output lives in `out/` — fully static HTML/CSS/JS. The build also generates:
+- `out/sitemap.xml`
+- `out/robots.txt`
+- `out/404.html`
+- `out/.htaccess` (HTTPS, caching, security headers)
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+## Deploying to Hostinger
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+1. Run `npm run build` locally.
+2. Open Hostinger's **File Manager** (or use FTP) and navigate to `public_html/`.
+3. Upload **everything inside** `out/` (not the `out/` folder itself) — including the hidden `.htaccess`.
+4. In `lib/site.ts`, make sure `url` matches the production domain.
+5. Visit `https://yantrabiz.com/` to verify.
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+If you set up GitLab CI for auto-deploy, the pipeline should `npm ci && npm run build` and then FTP `out/*` to `public_html/` on Hostinger.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+## SEO
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+The site ships with:
+- Per-page `<title>`, `<meta description>`, canonical URL, OG / Twitter cards (via Next.js Metadata API).
+- Auto-generated `sitemap.xml` (covers all 11 industry pages + static routes).
+- `robots.txt`.
+- JSON-LD structured data: `Organization`, `WebSite` with SearchAction, `BreadcrumbList` (every page), `FAQPage` (every industry — eligible for FAQ rich snippets), `ItemList`.
+- Semantic HTML hierarchy, alt text, `<nav>`, `<main>`, `<article>`.
+- Self-hosted Plus Jakarta Sans via `next/font` (no FOUT).
+- Static HTML for every route — instant LCP, no client-side rendering tax.
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+The SEO team can:
+- Update titles / descriptions per page (top of each page file).
+- Edit keywords in the markdown frontmatter and body for each industry.
+- Plug in Google Analytics / Tag Manager by adding a script tag to `app/layout.tsx`.
+- Add hreflang or canonical adjustments via the Metadata API.
 
-## License
-For open source projects, say how it is licensed.
+## Brand tokens
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Defined in `tailwind.config.ts`:
+
+- `primary` (navy `#1a2a7c`) with full 50–950 shade scale
+- `accent` (red `#da1f26`) with full 50–950 shade scale
+- `ink` (neutral) with full 50–950 shade scale
+- `background`, `foreground`, `border`, `ring`, `muted`
+
+Custom utilities in `app/globals.css`:
+- `.gradient-hero`, `.mesh-bg` — backgrounds
+- `.gradient-text-primary`, `.gradient-text-accent` — gradient text fills
+- `.glass` — glassmorphism
+
+## Notes for future development
+
+- **Multilingual** — add `next-intl` and a `[locale]/` segment when expanding beyond English.
+- **CMS** — if marketing wants to edit content without touching markdown, plug in Sanity or Strapi behind the existing content loader.
+- **Blog** — drop an `app/blog/[slug]/page.tsx` and a `content/blog/` directory; same content-loader pattern.
+- **Analytics** — drop GA/GTM into `app/layout.tsx`.
+- **Form backend** — the contact form currently routes to WhatsApp; swap to Formspree/Web3Forms by changing the form's `action`.
