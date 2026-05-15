@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { siteConfig, telLink, mailtoLink } from "@/lib/site";
 import { industries } from "@/lib/industries";
@@ -38,15 +37,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8">
           {/* Brand */}
           <div className="md:col-span-4 lg:col-span-5">
-            <Link href="/" className="inline-flex items-center gap-2.5 mb-5">
-              <Image
-                src="/yantralogo.webp"
-                alt={`${siteConfig.name} logo`}
-                width={44}
-                height={44}
-                className="h-10 w-10 object-contain"
-              />
-              <span className="font-display font-bold text-xl tracking-tight text-white">
+            <Link href="/" className="inline-flex items-center mb-5">
+              <span className="font-display font-bold text-2xl tracking-tight text-white">
                 {siteConfig.name}
               </span>
             </Link>
