@@ -14,8 +14,8 @@ export function Container({
       className={cn(
         "mx-auto w-full px-5 sm:px-6 lg:px-10",
         size === "narrow" && "max-w-4xl",
-        size === "default" && "max-w-[1440px]",
-        size === "wide" && "max-w-[1600px]",
+        size === "default" && "max-w-[1600px]",
+        size === "wide" && "max-w-[1800px]",
         className,
       )}
     >

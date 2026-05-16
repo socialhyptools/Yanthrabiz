@@ -33,7 +33,7 @@ export function Footer() {
         }}
       />
 
-      <div className="relative mx-auto max-w-[1440px] px-5 sm:px-6 lg:px-10 pt-20 pb-10">
+      <div className="relative mx-auto max-w-[1600px] px-5 sm:px-6 lg:px-10 pt-20 pb-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8">
           {/* Brand */}
           <div className="md:col-span-4 lg:col-span-5">

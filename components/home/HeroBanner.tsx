@@ -145,7 +145,7 @@ export function HeroBanner() {
 
   return (
     <section className="relative pb-16 md:pb-20 -mt-6 md:-mt-10">
-      <div className="mx-auto max-w-[1440px] px-6 sm:px-8 lg:px-12">
+      <div className="mx-auto max-w-[1600px] px-6 sm:px-8 lg:px-12">
         <div
           className="relative aspect-[16/9] overflow-hidden rounded-xl md:rounded-2xl bg-primary-950 shadow-card touch-pan-y select-none"
           onMouseEnter={() => setPaused(true)}
