@@ -68,9 +68,9 @@ export function HeroBanner() {
 
   return (
     <section className="relative pb-16 md:pb-20 -mt-6 md:-mt-10">
-      <div className="mx-auto max-w-[1440px] px-5 sm:px-6 lg:px-10">
+      <div className="mx-auto max-w-[1440px] px-6 sm:px-8 lg:px-12">
         <div
-          className="relative aspect-[16/10] sm:aspect-[16/8] md:aspect-[21/8] overflow-hidden rounded-lg md:rounded-xl bg-ink-100 shadow-soft"
+          className="relative aspect-[16/10] sm:aspect-[16/8] md:aspect-[21/8] overflow-hidden bg-ink-100 shadow-card"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
           onTouchStart={() => setPaused(true)}
