@@ -70,20 +70,20 @@ export function HeroBanner() {
     <section className="relative pb-16 md:pb-20 -mt-6 md:-mt-10">
       <div className="mx-auto max-w-[1440px] px-6 sm:px-8 lg:px-12">
         <div
-          className="relative aspect-[16/9] overflow-hidden rounded-xl md:rounded-2xl bg-ink-100 shadow-card"
+          className="relative aspect-[16/9] overflow-hidden rounded-xl md:rounded-2xl bg-primary-950 shadow-card"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
           onTouchStart={() => setPaused(true)}
           onTouchEnd={() => setPaused(false)}
         >
           <div className="absolute inset-0">
-            <AnimatePresence mode="wait">
+            <AnimatePresence initial={false}>
               <motion.div
                 key={slides[index].id}
-                initial={{ opacity: 0, scale: 1.04 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.98 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.9, ease: "easeInOut" }}
                 className="absolute inset-0"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
