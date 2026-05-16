@@ -2,7 +2,11 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { industries } from "@/lib/industries";
 import { Container } from "@/components/shared/Container";
-import { Reveal, StaggerContainer, StaggerItem } from "@/components/shared/Reveal";
+import {
+  Reveal,
+  StaggerContainer,
+  StaggerItem,
+} from "@/components/shared/Reveal";
 import { cn } from "@/lib/utils";
 
 export function IndustriesGrid() {
@@ -39,33 +43,43 @@ export function IndustriesGrid() {
               <StaggerItem key={ind.slug}>
                 <Link
                   href={`/industries/${ind.slug}`}
-                  className="group relative block h-full rounded-2xl border border-ink-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-card hover:border-primary/20"
+                  className="group relative block h-full rounded-2xl overflow-hidden bg-white border border-ink-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-card hover:border-primary/20"
                 >
-                  <div
-                    aria-hidden
-                    className={cn(
-                      "absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br",
-                      ind.accentClass,
-                    )}
-                  />
-                  <div className="relative">
+                  <div className="aspect-[16/10] relative overflow-hidden bg-ink-100">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={encodeURI(ind.banner)}
+                      alt={`${ind.title} on Yantra Biz`}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      loading="lazy"
+                    />
+                    {/* Gradient overlay for icon legibility */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink-950/65 via-ink-900/15 to-transparent" />
+
+                    {/* Floating icon badge */}
                     <div
                       className={cn(
-                        "inline-flex h-12 w-12 items-center justify-center rounded-xl transition-transform group-hover:scale-110",
-                        ind.iconBgClass,
+                        "absolute top-3 left-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/95 backdrop-blur shadow-soft transition-transform group-hover:scale-110",
                       )}
                     >
-                      <Icon className={cn("h-6 w-6", ind.iconColorClass)} />
+                      <Icon className={cn("h-5 w-5", ind.iconColorClass)} />
                     </div>
-                    <h3 className="mt-5 font-display text-lg font-bold text-ink-900 tracking-tight group-hover:text-primary transition-colors">
-                      {ind.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-ink-600 leading-relaxed line-clamp-3">
+
+                    {/* Bottom: title sits on the image with gradient backing */}
+                    <div className="absolute inset-x-0 bottom-0 p-4">
+                      <h3 className="font-display text-lg md:text-xl font-bold text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.45)] leading-tight">
+                        {ind.title}
+                      </h3>
+                    </div>
+                  </div>
+
+                  <div className="p-5">
+                    <p className="text-sm text-ink-600 leading-relaxed line-clamp-2">
                       {ind.tagline}
                     </p>
-                    <div className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-primary opacity-0 group-hover:opacity-100 transition-all">
-                      Explore
-                      <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    <div className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:gap-2 transition-all">
+                      Explore industry
+                      <ArrowUpRight className="h-4 w-4" />
                     </div>
                   </div>
                 </Link>

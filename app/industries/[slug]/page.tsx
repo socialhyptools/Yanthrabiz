@@ -93,43 +93,61 @@ export default async function CategoryPage({
       />
       <FAQPageJsonLd faqs={cat.faq} />
 
-      {/* Hero */}
-      <section className="relative pt-12 md:pt-16 pb-16 md:pb-20 gradient-hero overflow-hidden">
-        <Container>
-          <Reveal>
-            <nav className="text-sm text-ink-500 mb-5" aria-label="Breadcrumb">
-              <Link href="/" className="hover:text-primary">
-                Home
-              </Link>
-              <span className="mx-2">/</span>
-              <Link href="/industries" className="hover:text-primary">
-                Industries
-              </Link>
-              <span className="mx-2">/</span>
-              <span className="text-ink-900">{cat.title}</span>
-            </nav>
+      {/* Hero — image-led with category banner */}
+      <section className="relative overflow-hidden">
+        {/* Full-width banner */}
+        <div className="relative aspect-[16/7] sm:aspect-[16/6] md:aspect-[21/7] w-full max-h-[520px] overflow-hidden bg-ink-900">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={encodeURI(meta.banner)}
+            alt={`${cat.title} — ${siteConfig.name}`}
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+          />
+          {/* Dark gradient for text legibility */}
+          <div className="absolute inset-0 bg-gradient-to-r from-ink-950/85 via-ink-950/55 to-ink-950/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink-950/60 to-transparent" />
 
-            <div className="flex items-start gap-4">
-              <div
-                className={cn(
-                  "shrink-0 inline-flex h-16 w-16 items-center justify-center rounded-2xl",
-                  meta.iconBgClass,
-                )}
-              >
-                <Icon className={cn("h-8 w-8", meta.iconColorClass)} />
-              </div>
-              <div className="min-w-0">
-                <div className="inline-flex items-center gap-1.5 rounded-full bg-white/70 backdrop-blur px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-primary border border-primary/10">
-                  <Sparkles className="h-3 w-3" />
-                  Industry
+          <Container>
+            <div className="relative h-full flex flex-col justify-end py-10 md:py-14">
+              <Reveal>
+                <nav className="text-sm text-white/70 mb-4" aria-label="Breadcrumb">
+                  <Link href="/" className="hover:text-white">
+                    Home
+                  </Link>
+                  <span className="mx-2">/</span>
+                  <Link href="/industries" className="hover:text-white">
+                    Industries
+                  </Link>
+                  <span className="mx-2">/</span>
+                  <span className="text-white">{cat.title}</span>
+                </nav>
+
+                <div className="flex items-center gap-3">
+                  <div
+                    className={cn(
+                      "shrink-0 inline-flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-2xl bg-white/95 backdrop-blur shadow-card",
+                    )}
+                  >
+                    <Icon className={cn("h-6 w-6 md:h-7 md:w-7", meta.iconColorClass)} />
+                  </div>
+                  <div className="inline-flex items-center gap-1.5 rounded-full bg-white/15 backdrop-blur px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-white border border-white/20">
+                    <Sparkles className="h-3 w-3" />
+                    Industry
+                  </div>
                 </div>
-                <h1 className="mt-2 text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-ink-900 tracking-tight leading-[1.05]">
+                <h1 className="mt-4 text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white tracking-tight leading-[1.05] drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] max-w-3xl">
                   {cat.hero_title}
                 </h1>
-              </div>
+              </Reveal>
             </div>
+          </Container>
+        </div>
 
-            <div className="mt-7 grid lg:grid-cols-3 gap-8 items-start">
+        {/* Intro + side panel */}
+        <Container>
+          <Reveal>
+            <div className="grid lg:grid-cols-3 gap-8 items-start py-12 md:py-16">
               <div className="lg:col-span-2">
                 <Prose text={cat.intro} size="lg" />
                 <div className="mt-7 flex flex-col sm:flex-row gap-3">

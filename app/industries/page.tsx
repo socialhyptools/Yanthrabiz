@@ -75,33 +75,32 @@ export default function IndustriesIndexPage() {
                 <StaggerItem key={ind.slug}>
                   <Link
                     href={`/industries/${ind.slug}`}
-                    className="group relative block h-full rounded-3xl border border-ink-200 bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-card hover:border-primary/20 overflow-hidden"
+                    className="group relative block h-full rounded-3xl overflow-hidden border border-ink-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-card hover:border-primary/20"
                   >
-                    <div
-                      aria-hidden
-                      className={cn(
-                        "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-br",
-                        ind.accentClass,
-                      )}
-                    />
-                    <div className="relative">
-                      <div
-                        className={cn(
-                          "inline-flex h-14 w-14 items-center justify-center rounded-2xl",
-                          ind.iconBgClass,
-                        )}
-                      >
-                        <Icon
-                          className={cn("h-7 w-7", ind.iconColorClass)}
-                        />
+                    <div className="aspect-[16/10] relative overflow-hidden bg-ink-100">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={encodeURI(ind.banner)}
+                        alt={`${ind.title} on Yantra Biz`}
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-ink-950/70 via-ink-900/20 to-transparent" />
+
+                      <div className="absolute top-4 left-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white/95 backdrop-blur shadow-soft">
+                        <Icon className={cn("h-5 w-5", ind.iconColorClass)} />
                       </div>
-                      <h2 className="mt-6 font-display text-xl font-bold text-ink-900 tracking-tight group-hover:text-primary transition-colors">
-                        {ind.title}
-                      </h2>
-                      <p className="mt-2.5 text-ink-600 leading-relaxed">
-                        {ind.tagline}
-                      </p>
-                      <div className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:gap-2 transition-all">
+
+                      <div className="absolute inset-x-0 bottom-0 p-5">
+                        <h2 className="font-display text-xl md:text-2xl font-bold text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.45)] leading-tight">
+                          {ind.title}
+                        </h2>
+                      </div>
+                    </div>
+
+                    <div className="p-6">
+                      <p className="text-ink-600 leading-relaxed">{ind.tagline}</p>
+                      <div className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:gap-2 transition-all">
                         Explore industry
                         <ArrowUpRight className="h-4 w-4" />
                       </div>
