@@ -97,11 +97,12 @@ export default async function CategoryPage({
       <section className="relative overflow-hidden">
         {/* Full-width banner */}
         <div className="relative aspect-[16/7] sm:aspect-[16/6] md:aspect-[21/7] w-full max-h-[520px] overflow-hidden bg-ink-900">
+          {/* Flipped horizontally so the artwork's white space sits behind the title and breadcrumbs on the left */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={encodeURI(meta.banner)}
             alt={`${cat.title} — ${siteConfig.name}`}
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover scale-x-[-1]"
             loading="eager"
           />
           {/* Dark gradient for text legibility */}

@@ -46,11 +46,12 @@ export function IndustriesGrid() {
                   className="group relative block h-full rounded-2xl overflow-hidden bg-white border border-ink-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-card hover:border-primary/20"
                 >
                   <div className="aspect-[16/10] relative overflow-hidden bg-ink-100">
+                    {/* Flipped horizontally so the artwork's white space sits behind the title overlay on the left */}
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={encodeURI(ind.banner)}
                       alt={`${ind.title} on Yantra Biz`}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="absolute inset-0 w-full h-full object-cover scale-x-[-1] transition-transform duration-700 group-hover:scale-x-[-1.1] group-hover:scale-y-110"
                       loading="lazy"
                     />
                     {/* Gradient overlay for icon legibility */}
