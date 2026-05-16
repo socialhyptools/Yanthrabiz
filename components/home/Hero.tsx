@@ -225,14 +225,18 @@ function HeroVisual() {
       <motion.div
         animate={{ y: [0, 6, 0], x: [0, -3, 0] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-        className="absolute -top-3 right-2 lg:-right-3 rounded-2xl bg-white border border-ink-200 shadow-card px-3.5 py-2.5 flex items-center gap-2.5 z-10"
+        className="absolute -top-2 lg:-top-3 right-2 lg:-right-3 rounded-xl lg:rounded-2xl bg-white border border-ink-200 shadow-card px-2.5 py-1.5 lg:px-3.5 lg:py-2.5 flex items-center gap-2 lg:gap-2.5 z-10"
       >
-        <div className="h-8 w-8 rounded-lg bg-emerald-100 grid place-items-center">
-          <ShieldCheck className="h-4 w-4 text-emerald-700" />
+        <div className="h-6 w-6 lg:h-8 lg:w-8 rounded-md lg:rounded-lg bg-emerald-100 grid place-items-center">
+          <ShieldCheck className="h-3 w-3 lg:h-4 lg:w-4 text-emerald-700" />
         </div>
         <div>
-          <div className="text-[11px] font-semibold text-ink-900">Verified seller</div>
-          <div className="text-[10px] text-ink-500">Trust score 98%</div>
+          <div className="text-[10px] lg:text-[11px] font-semibold text-ink-900 leading-tight">
+            Verified seller
+          </div>
+          <div className="text-[9px] lg:text-[10px] text-ink-500 leading-tight">
+            Trust score 98%
+          </div>
         </div>
       </motion.div>
 
@@ -240,14 +244,18 @@ function HeroVisual() {
       <motion.div
         animate={{ y: [0, -6, 0] }}
         transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute -bottom-4 left-2 lg:-left-3 rounded-2xl bg-white border border-ink-200 shadow-card px-3.5 py-2.5 flex items-center gap-2.5 z-10"
+        className="absolute -bottom-3 lg:-bottom-4 left-2 lg:-left-3 rounded-xl lg:rounded-2xl bg-white border border-ink-200 shadow-card px-2.5 py-1.5 lg:px-3.5 lg:py-2.5 flex items-center gap-2 lg:gap-2.5 z-10"
       >
-        <div className="h-8 w-8 rounded-lg bg-primary-100 grid place-items-center">
-          <Globe className="h-4 w-4 text-primary" />
+        <div className="h-6 w-6 lg:h-8 lg:w-8 rounded-md lg:rounded-lg bg-primary-100 grid place-items-center">
+          <Globe className="h-3 w-3 lg:h-4 lg:w-4 text-primary" />
         </div>
         <div>
-          <div className="text-[11px] font-semibold text-ink-900">16+ countries</div>
-          <div className="text-[10px] text-ink-500">Buyers worldwide</div>
+          <div className="text-[10px] lg:text-[11px] font-semibold text-ink-900 leading-tight">
+            16+ countries
+          </div>
+          <div className="text-[9px] lg:text-[10px] text-ink-500 leading-tight">
+            Buyers worldwide
+          </div>
         </div>
       </motion.div>
     </div>
