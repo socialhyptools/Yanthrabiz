@@ -95,8 +95,10 @@ export default async function CategoryPage({
 
       {/* Hero — image-led with category banner */}
       <section className="relative overflow-hidden">
-        {/* Full-width banner */}
-        <div className="relative aspect-[16/7] sm:aspect-[16/6] md:aspect-[21/7] w-full max-h-[520px] overflow-hidden bg-ink-900">
+        {/* Full-width banner. On mobile we use min-h instead of an aspect ratio
+            so long titles (e.g. "Buy and Sell Paper Industrial Machinery Online")
+            never get clipped. On larger screens the cinematic aspect ratio kicks in. */}
+        <div className="relative w-full min-h-[480px] sm:min-h-0 sm:aspect-[16/6] md:aspect-[21/7] sm:max-h-[520px] overflow-hidden bg-ink-900">
           {/* Flipped horizontally so the artwork's white space sits behind the title and breadcrumbs on the left */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
