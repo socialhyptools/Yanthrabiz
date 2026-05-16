@@ -16,10 +16,12 @@ import {
   industries,
   getIndustryBySlug,
 } from "@/lib/industries";
+import { getProductsByCategory } from "@/lib/products";
 import { siteConfig, whatsappLink } from "@/lib/site";
 import { Container } from "@/components/shared/Container";
 import { Prose } from "@/components/shared/Prose";
 import { Reveal, StaggerContainer, StaggerItem } from "@/components/shared/Reveal";
+import { ProductGallery } from "@/components/shared/ProductGallery";
 import { Button } from "@/components/ui/Button";
 import {
   BreadcrumbJsonLd,
@@ -78,6 +80,7 @@ export default async function CategoryPage({
   const Icon = meta.icon;
 
   const related = industries.filter((i) => i.slug !== slug).slice(0, 3);
+  const products = getProductsByCategory(slug);
 
   return (
     <>
@@ -225,6 +228,40 @@ export default async function CategoryPage({
                 </StaggerItem>
               ))}
             </StaggerContainer>
+          </Container>
+        </section>
+      )}
+
+      {/* Featured listings — only for categories with real product images */}
+      {products.length > 0 && (
+        <section className="py-20 md:py-24 bg-gradient-to-b from-white via-ink-50/60 to-white">
+          <Container>
+            <Reveal>
+              <div className="flex items-end justify-between gap-6 mb-10 flex-wrap">
+                <div className="max-w-2xl">
+                  <div className="inline-flex items-center gap-2 rounded-full bg-accent-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-accent-700">
+                    Featured listings
+                  </div>
+                  <h2 className="mt-4 text-3xl md:text-4xl font-bold text-ink-900 tracking-tight">
+                    Live {cat.title.toLowerCase()} on the marketplace
+                  </h2>
+                  <p className="mt-3 text-ink-600">
+                    A few verified listings available right now. The full
+                    inventory and seller contact lives in the Yantra Biz app.
+                  </p>
+                </div>
+                <a
+                  href={siteConfig.webApp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hidden md:inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2.5 transition-all"
+                >
+                  See all on the app
+                  <ArrowUpRight className="h-4 w-4" />
+                </a>
+              </div>
+            </Reveal>
+            <ProductGallery products={products} />
           </Container>
         </section>
       )}

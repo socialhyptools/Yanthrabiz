@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/home/Hero";
+import { HeroBanner } from "@/components/home/HeroBanner";
 import { IndustriesGrid } from "@/components/home/IndustriesGrid";
+import { FeaturedListings } from "@/components/home/FeaturedListings";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { WhyUs } from "@/components/home/WhyUs";
 import { AppShowcase } from "@/components/home/AppShowcase";
@@ -35,7 +37,9 @@ export default function Home() {
         }))}
       />
       <Hero />
+      <HeroBanner />
       <IndustriesGrid />
+      <FeaturedListings />
       <HowItWorks />
       <WhyUs />
       <AppShowcase />
