@@ -139,7 +139,7 @@ export default async function CategoryPage({
                     Industry
                   </div>
                 </div>
-                <h1 className="mt-4 text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white tracking-tight leading-[1.05] drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] max-w-3xl">
+                <h1 className="mt-4 text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white tracking-tight leading-[1.08] drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] max-w-[18ch] sm:max-w-3xl">
                   {cat.hero_title}
                 </h1>
               </Reveal>
