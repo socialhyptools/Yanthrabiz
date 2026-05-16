@@ -32,14 +32,28 @@ const slides: Slide[] = [
     desktop: "/Banner/DESKTOP/Banner (1).jpeg",
     mobile: "/Banner/MOBILE/01.png",
     alt: "Yantra Biz — best deals on used machinery",
-    // No overlay — banner artwork already has built-in headline + badges
+    overlay: {
+      eyebrow: "For buyers",
+      headline: "Best deals. No middlemen.",
+      subhead:
+        "Refurbished and used industrial machinery — sourced direct from verified sellers, vetted before listing.",
+      cta: { label: "Browse the marketplace", href: siteConfig.webApp },
+      position: "left",
+    },
   },
   {
     id: 2,
     desktop: "/Banner/DESKTOP/Banner (2).jpeg",
     mobile: "/Banner/MOBILE/02.png",
     alt: "Yantra Biz — powering industries with used machines",
-    // No overlay — banner artwork already has built-in headline + badges
+    overlay: {
+      eyebrow: "11 industries",
+      headline: "Powering operators across India and beyond.",
+      subhead:
+        "From pharma to plastics — from a single press to a full production line. We have what your floor needs.",
+      cta: { label: "Explore industries", href: "/industries" },
+      position: "left",
+    },
   },
   {
     id: 3,
