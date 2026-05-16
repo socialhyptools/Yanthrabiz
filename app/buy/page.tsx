@@ -230,7 +230,7 @@ export default function BuyPage() {
                   >
                     <Icon className={cn("h-5 w-5", ind.iconColorClass)} />
                   </div>
-                  <span className="font-semibold text-sm text-ink-800 group-hover:text-primary transition-colors">
+                  <span className="font-semibold text-sm text-ink-800 group-hover:text-primary transition-colors min-w-0 break-words leading-tight">
                     {ind.short}
                   </span>
                 </Link>

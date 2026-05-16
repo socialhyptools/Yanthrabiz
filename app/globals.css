@@ -71,8 +71,15 @@
   }
 
   .glass {
-    background: rgb(255 255 255 / 0.7);
-    backdrop-filter: saturate(140%) blur(12px);
-    -webkit-backdrop-filter: saturate(140%) blur(12px);
+    background: rgb(255 255 255 / 0.94);
+    backdrop-filter: saturate(140%) blur(14px);
+    -webkit-backdrop-filter: saturate(140%) blur(14px);
+  }
+
+  /* Solid fallback for browsers without backdrop-filter (older Android Chrome, etc.) */
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .glass {
+      background: rgb(255 255 255 / 0.98);
+    }
   }
 }
