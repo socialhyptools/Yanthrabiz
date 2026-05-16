@@ -104,8 +104,15 @@ const AUTOPLAY_MS = 5500;
 export function HeroBanner() {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false);
   const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
+
+  // Only run fade animations after the first paint, so the initial banner
+  // renders at full opacity instantly instead of fading in from 0.
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   const next = useCallback(
     () => setIndex((i) => (i + 1) % slides.length),
@@ -157,7 +164,7 @@ export function HeroBanner() {
             <AnimatePresence initial={false}>
               <motion.div
                 key={slides[index].id}
-                initial={{ opacity: 0 }}
+                initial={hasMounted ? { opacity: 0 } : false}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.9, ease: "easeInOut" }}
