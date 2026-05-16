@@ -32,12 +32,28 @@ const slides: Slide[] = [
     desktop: "/Banner/DESKTOP/Banner (1).jpeg",
     mobile: "/Banner/MOBILE/01.png",
     alt: "Yantra Biz — best deals on used machinery",
+    overlay: {
+      eyebrow: "For buyers",
+      headline: "Best deals. No middlemen.",
+      subhead:
+        "Refurbished and used industrial machinery — sourced direct from verified sellers, vetted before listing.",
+      cta: { label: "Browse the marketplace", href: siteConfig.webApp },
+      position: "right",
+    },
   },
   {
     id: 2,
     desktop: "/Banner/DESKTOP/Banner (2).jpeg",
     mobile: "/Banner/MOBILE/02.png",
     alt: "Yantra Biz — powering industries with used machines",
+    overlay: {
+      eyebrow: "11 industries",
+      headline: "Powering operators across India and beyond.",
+      subhead:
+        "From pharma to plastics — from a single press to a full production line. We have what your floor needs.",
+      cta: { label: "Explore industries", href: "/industries" },
+      position: "right",
+    },
   },
   {
     id: 3,
@@ -58,12 +74,28 @@ const slides: Slide[] = [
     desktop: "/Banner/DESKTOP/Banner (4).jpeg",
     mobile: "/Banner/MOBILE/01.png",
     alt: "Yantra Biz — refurbished industrial machinery",
+    overlay: {
+      eyebrow: "Refurbished",
+      headline: "Ready-to-ship machinery, vetted by experts.",
+      subhead:
+        "Every refurbished listing is inspected, tested, and documented before it ever goes live on Yantra Biz.",
+      cta: { label: "View refurbished", href: siteConfig.webApp },
+      position: "left",
+    },
   },
   {
     id: 5,
     desktop: "/Banner/DESKTOP/Banner (5).jpeg",
     mobile: "/Banner/MOBILE/02.png",
     alt: "Yantra Biz — industrial machinery deals",
+    overlay: {
+      eyebrow: "Global reach",
+      headline: "Buyers in 16+ countries. Sellers across India.",
+      subhead:
+        "Cross-border machinery sourcing made simple. Our concierge team handles the paperwork and logistics.",
+      cta: { label: "Start sourcing", href: siteConfig.webApp },
+      position: "left",
+    },
   },
 ];
 
