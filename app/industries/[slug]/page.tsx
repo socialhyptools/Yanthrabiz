@@ -95,10 +95,10 @@ export default async function CategoryPage({
 
       {/* Hero — image-led with category banner */}
       <section className="relative overflow-hidden">
-        {/* Full-width banner. On mobile we use min-h instead of an aspect ratio
-            so long titles (e.g. "Buy and Sell Paper Industrial Machinery Online")
-            never get clipped. On larger screens the cinematic aspect ratio kicks in. */}
-        <div className="relative w-full min-h-[480px] sm:min-h-0 sm:aspect-[16/6] md:aspect-[21/7] sm:max-h-[520px] overflow-hidden bg-ink-900">
+        {/* Full-width banner. On mobile we let content drive the height (min-h
+            ensures it never collapses, but tall titles can push it taller).
+            Larger screens use the cinematic aspect ratio. */}
+        <div className="relative w-full min-h-[340px] sm:min-h-0 sm:aspect-[16/6] md:aspect-[21/7] sm:max-h-[520px] overflow-hidden bg-ink-900">
           {/* Flipped horizontally so the artwork's white space sits behind the title and breadcrumbs on the left */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -112,7 +112,7 @@ export default async function CategoryPage({
           <div className="absolute inset-0 bg-gradient-to-t from-ink-950/60 to-transparent" />
 
           <Container>
-            <div className="relative h-full flex flex-col justify-end py-10 md:py-14">
+            <div className="relative h-full flex flex-col justify-end py-7 md:py-14">
               <Reveal>
                 <nav className="text-sm text-white/70 mb-4" aria-label="Breadcrumb">
                   <Link href="/" className="hover:text-white">
