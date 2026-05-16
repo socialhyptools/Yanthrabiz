@@ -2,16 +2,28 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { siteConfig } from "@/lib/site";
 
 const SWIPE_THRESHOLD = 50;
+
+type Overlay = {
+  eyebrow?: string;
+  headline: string;
+  subhead?: string;
+  cta?: { label: string; href: string };
+  /** Position: "left" (default) or "right" — choose based on where the banner artwork leaves empty space */
+  position?: "left" | "right";
+};
 
 type Slide = {
   id: number;
   desktop: string;
   mobile: string;
   alt: string;
+  /** Optional overlay shown on desktop only; mobile uses the banner's own design */
+  overlay?: Overlay;
 };
 
 const slides: Slide[] = [
@@ -19,31 +31,39 @@ const slides: Slide[] = [
     id: 1,
     desktop: "/Banner/DESKTOP/Banner (1).jpeg",
     mobile: "/Banner/MOBILE/01.png",
-    alt: "Yantra Biz featured industrial machinery",
+    alt: "Yantra Biz — best deals on used machinery",
   },
   {
     id: 2,
     desktop: "/Banner/DESKTOP/Banner (2).jpeg",
     mobile: "/Banner/MOBILE/02.png",
-    alt: "Yantra Biz verified machinery marketplace",
+    alt: "Yantra Biz — powering industries with used machines",
   },
   {
     id: 3,
     desktop: "/Banner/DESKTOP/Banner (3).jpeg",
     mobile: "/Banner/MOBILE/03.png",
-    alt: "Yantra Biz global machinery sourcing",
+    alt: "Yantra Biz — how to sell your industrial machinery",
+    overlay: {
+      eyebrow: "For sellers",
+      headline: "Turn idle machinery into your next sale.",
+      subhead:
+        "List in minutes. Reach verified buyers across 16+ countries. Close direct, with no broker chain.",
+      cta: { label: "List a machine", href: siteConfig.webApp },
+      position: "left",
+    },
   },
   {
     id: 4,
     desktop: "/Banner/DESKTOP/Banner (4).jpeg",
     mobile: "/Banner/MOBILE/01.png",
-    alt: "Yantra Biz refurbished machinery",
+    alt: "Yantra Biz — refurbished industrial machinery",
   },
   {
     id: 5,
     desktop: "/Banner/DESKTOP/Banner (5).jpeg",
     mobile: "/Banner/MOBILE/02.png",
-    alt: "Yantra Biz industrial machinery deals",
+    alt: "Yantra Biz — industrial machinery deals",
   },
 ];
 
@@ -125,6 +145,50 @@ export function HeroBanner() {
                   className="absolute inset-0 w-full h-full object-cover sm:hidden"
                   loading={index === 0 ? "eager" : "lazy"}
                 />
+
+                {/* Overlay text — desktop only, slide-specific */}
+                {slides[index].overlay && (
+                  <div
+                    className={cn(
+                      "hidden md:flex absolute inset-y-0 items-center px-10 lg:px-16",
+                      slides[index].overlay.position === "right"
+                        ? "right-0 left-1/2 justify-end text-right"
+                        : "left-0 right-1/2",
+                    )}
+                  >
+                    <motion.div
+                      initial={{ opacity: 0, x: slides[index].overlay.position === "right" ? 20 : -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+                      className="text-white max-w-md drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)]"
+                    >
+                      {slides[index].overlay.eyebrow && (
+                        <div className="inline-flex items-center rounded-full bg-white/15 backdrop-blur px-3 py-1 text-[11px] font-semibold uppercase tracking-wider border border-white/20">
+                          {slides[index].overlay.eyebrow}
+                        </div>
+                      )}
+                      <h2 className="mt-4 font-display text-3xl lg:text-4xl xl:text-5xl font-bold leading-[1.05] tracking-tight">
+                        {slides[index].overlay.headline}
+                      </h2>
+                      {slides[index].overlay.subhead && (
+                        <p className="mt-4 text-base lg:text-lg text-white/90 leading-relaxed">
+                          {slides[index].overlay.subhead}
+                        </p>
+                      )}
+                      {slides[index].overlay.cta && (
+                        <a
+                          href={slides[index].overlay.cta.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white text-primary-900 px-5 py-3 text-sm lg:text-base font-semibold shadow-card hover:bg-white/95 hover:shadow-glow transition-all"
+                        >
+                          {slides[index].overlay.cta.label}
+                          <ArrowRight className="h-4 w-4" />
+                        </a>
+                      )}
+                    </motion.div>
+                  </div>
+                )}
               </motion.div>
             </AnimatePresence>
 
