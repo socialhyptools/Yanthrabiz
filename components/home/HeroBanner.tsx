@@ -70,13 +70,13 @@ export function HeroBanner() {
     <section className="relative pb-16 md:pb-20 -mt-6 md:-mt-10">
       <div className="mx-auto max-w-[1440px] px-5 sm:px-6 lg:px-10">
         <div
-          className="relative rounded-2xl md:rounded-3xl bg-white shadow-card p-2 md:p-3"
+          className="relative aspect-[16/10] sm:aspect-[16/8] md:aspect-[21/8] overflow-hidden rounded-lg md:rounded-xl bg-ink-100 shadow-soft"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
           onTouchStart={() => setPaused(true)}
           onTouchEnd={() => setPaused(false)}
         >
-          <div className="relative aspect-[16/10] sm:aspect-[16/8] md:aspect-[21/8] overflow-hidden rounded-xl md:rounded-2xl bg-ink-100">
+          <div className="absolute inset-0">
             <AnimatePresence mode="wait">
               <motion.div
                 key={slides[index].id}
