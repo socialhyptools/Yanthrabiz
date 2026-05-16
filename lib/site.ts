@@ -39,8 +39,9 @@ export const siteConfig = {
   // Only include verified, live profiles here — the footer and Organization
   // JSON-LD iterate this object and skip platforms not listed.
   socials: {
-    facebook: "https://www.facebook.com/Yantra1official",
+    facebook: "https://www.facebook.com/YantraApp",
     instagram: "https://www.instagram.com/_yantra_official/",
+    youtube: "https://www.youtube.com/@Yantra_App",
   },
 
   // ===== Brand stats (shown across the site) =====
