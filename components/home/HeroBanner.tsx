@@ -165,13 +165,14 @@ export function HeroBanner() {
                 />
 
                 {/* Overlay text — desktop only, slide-specific */}
+                {/* Padding leaves clearance for the prev/next nav arrows on each side. */}
                 {slides[index].overlay && (
                   <div
                     className={cn(
-                      "hidden md:flex absolute inset-y-0 items-center px-10 lg:px-16",
+                      "hidden md:flex absolute inset-y-0 items-center",
                       slides[index].overlay.position === "right"
-                        ? "right-0 left-1/2 justify-end text-right"
-                        : "left-0 right-1/2",
+                        ? "right-0 left-1/2 justify-end text-right pl-8 pr-20 lg:pr-24"
+                        : "left-0 right-1/2 pl-20 lg:pl-24 pr-8",
                     )}
                   >
                     <motion.div
