@@ -1,9 +1,11 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+const SWIPE_THRESHOLD = 50;
 
 type Slide = {
   id: number;
@@ -50,6 +52,8 @@ const AUTOPLAY_MS = 5500;
 export function HeroBanner() {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
 
   const next = useCallback(
     () => setIndex((i) => (i + 1) % slides.length),
@@ -66,15 +70,36 @@ export function HeroBanner() {
     return () => clearInterval(t);
   }, [next, paused]);
 
+  const onTouchStart = (e: React.TouchEvent) => {
+    setPaused(true);
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const onTouchEnd = (e: React.TouchEvent) => {
+    setPaused(false);
+    if (touchStartX.current === null || touchStartY.current === null) return;
+    const endX = e.changedTouches[0].clientX;
+    const endY = e.changedTouches[0].clientY;
+    const dx = touchStartX.current - endX;
+    const dy = touchStartY.current - endY;
+    touchStartX.current = null;
+    touchStartY.current = null;
+    // Only fire swipe when horizontal motion clearly dominates vertical
+    if (Math.abs(dx) < SWIPE_THRESHOLD || Math.abs(dx) <= Math.abs(dy)) return;
+    if (dx > 0) next();
+    else prev();
+  };
+
   return (
     <section className="relative pb-16 md:pb-20 -mt-6 md:-mt-10">
       <div className="mx-auto max-w-[1440px] px-6 sm:px-8 lg:px-12">
         <div
-          className="relative aspect-[16/9] overflow-hidden rounded-xl md:rounded-2xl bg-primary-950 shadow-card"
+          className="relative aspect-[16/9] overflow-hidden rounded-xl md:rounded-2xl bg-primary-950 shadow-card touch-pan-y select-none"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
-          onTouchStart={() => setPaused(true)}
-          onTouchEnd={() => setPaused(false)}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
         >
           <div className="absolute inset-0">
             <AnimatePresence initial={false}>
