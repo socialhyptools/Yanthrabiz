@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -8,14 +7,8 @@ import {
   MessageCircle,
   Sparkles,
 } from "lucide-react";
-import {
-  loadCategory,
-  getAllCategorySlugs,
-} from "@/lib/content";
-import {
-  industries,
-  getIndustryBySlug,
-} from "@/lib/industries";
+import { loadCategory } from "@/lib/content";
+import { getIndustryBySlug, industries } from "@/lib/industries";
 import { getProductsByCategory } from "@/lib/products";
 import { siteConfig, whatsappLink } from "@/lib/site";
 import { Container } from "@/components/shared/Container";
@@ -29,176 +22,46 @@ import {
 } from "@/components/seo/JsonLd";
 import { cn } from "@/lib/utils";
 
-/** Per-slug SEO metadata sourced from the canonical URL/meta sheet. */
-const industryPageMeta: Record<
-  string,
-  { title: string; description: string; canonical: string; keywords?: string }
-> = {
-  "agriculture-machinery-and-equipment": {
-    title: "Agriculture Machinery and Equipment | Farm Equipment Supplier in India",
+const SLUG = "chemical-machinery";
+
+export const metadata: Metadata = {
+  title: "Chemical Machinery & Chemical Plant Machinery Solutions | YantraBiz",
+  description:
+    "Explore high-quality chemical machinery, chemical plant machinery, chemical filling equipment, and chemical process machinery for industrial applications. Find reliable machinery solutions at YantraBiz.",
+  alternates: { canonical: "/chemical-machinery/" },
+  openGraph: {
+    title: "Chemical Machinery & Chemical Plant Machinery Solutions | YantraBiz",
     description:
-      "Looking for reliable agriculture machinery and equipment? We supply high-performance farm equipment for modern farming needs across India. Get a quote today.",
-    canonical: "/agriculture-machinery-and-equipment/",
-    keywords: "agricultural machinery & equipment",
-  },
-  "food-processing-machine": {
-    title: "Food Processing Machinery Manufacturer in India | Beverage Equipment",
-    description:
-      "Leading food processing machinery manufacturer in India providing beverage equipment, production machines, and customized solutions for industries.",
-    canonical: "/food-processing-machine/",
-    keywords: "food processing machinery",
-  },
-  "hospital-equipment": {
-    title: "Medical & Hospital Equipment Manufacturer in India",
-    description:
-      "Leading manufacturer of hospital and medical equipment in India offering durable, high-performance solutions for healthcare facilities. Get a quote today.",
-    canonical: "/hospital-equipment/",
-    keywords: "hospital equipment",
-  },
-  "industrial-machinery": {
-    title: "Industrial Machinery Supplier in India | Advanced Equipment",
-    description:
-      "Explore a wide range of industrial machinery and equipment for various industries. Trusted supplier in India offering reliable and efficient solutions. Enquire now.",
-    canonical: "/industrial-machinery/",
-    keywords: "industrial machinery",
-  },
-  "leather-processing-machinery": {
-    title: "Leather Machinery Manufacturer in India | Leather Making Machine",
-    description:
-      "Leading leather machinery manufacturer in India providing tannery machines and processing equipment designed for durability and efficiency.",
-    canonical: "/leather-processing-machinery/",
-    keywords: "leather processing machinery",
-  },
-  "material-handling-machine": {
-    title: "Material Handling Equipment Supplier in India | Industrial Solutions",
-    description:
-      "Discover reliable material handling machines and equipment for warehouses and industries. Trusted supplier in India offering efficient handling solutions. Enquire now.",
-    canonical: "/material-handling-machine/",
-    keywords: "material handling machine",
-  },
-  "miscellaneous-machinery": {
-    title: "Miscellaneous Machinery | Industrial Machinery Solutions in India",
-    description:
-      "Explore a wide range of miscellaneous machinery and industrial solutions for various applications. Trusted supplier offering custom and specialized equipment. Enquire now.",
-    canonical: "/miscellaneous-machinery/",
-    keywords: "miscellaneous machinery",
-  },
-  "paper-machinery": {
-    title: "Paper Processing Machinery & Equipment Solutions in India",
-    description:
-      "Explore advanced paper industrial machinery for efficient production. Trusted supplier in India offering complete paper mill solutions. Enquire now.",
-    canonical: "/paper-machinery/",
-    keywords: "paper machinery",
-  },
-  "pharmaceutical-machinery": {
-    title: "Pharma Machinery Manufacturer in India | Pharmaceutical Equipment",
-    description:
-      "Leading pharma machinery manufacturer in India providing high-performance equipment for tablet, capsule, and packaging processes. Get a quote today.",
-    canonical: "/pharmaceutical-machinery/",
-    keywords: "pharmaceutical machinery",
-  },
-  "plastic-industrial-machinery": {
-    title: "Plastic Industrial Machinery | Processing Equipment Supplier India",
-    description:
-      "Explore advanced plastic industrial machinery and processing equipment including injection moulding, extrusion, and recycling machines. Trusted supplier in India. Enquire now.",
-    canonical: "/plastic-industrial-machinery/",
-    keywords: "plastic industry machinery",
+      "Explore high-quality chemical machinery, chemical plant machinery, chemical filling equipment, and chemical process machinery for industrial applications. Find reliable machinery solutions at YantraBiz.",
+    url: `${siteConfig.url}/chemical-machinery`,
+    type: "website",
   },
 };
 
-export function generateStaticParams() {
-  // Exclude slugs whose industry entry has a custom href (served by their own page).
-  return getAllCategorySlugs()
-    .filter((slug) => {
-      const ind = industries.find((i) => i.slug === slug);
-      return !ind?.href;
-    })
-    .map((slug) => ({ slug }));
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
-  const { slug } = await params;
-  const custom = industryPageMeta[slug];
-  if (custom) {
-    return {
-      title: custom.title,
-      description: custom.description,
-      keywords: custom.keywords,
-      alternates: { canonical: custom.canonical },
-      openGraph: {
-        title: custom.title,
-        description: custom.description,
-        url: `${siteConfig.url}/industries/${slug}`,
-        type: "website",
-      },
-    };
-  }
-  // Fallback: auto-generate from category content
-  try {
-    const cat = loadCategory(slug);
-    const description = cat.intro
-      .replace(/\s+/g, " ")
-      .trim()
-      .slice(0, 200);
-    return {
-      title: `${cat.title} — Buy & Sell Online`,
-      description,
-      alternates: { canonical: `/industries/${slug}` },
-      openGraph: {
-        title: `${cat.title} | ${siteConfig.name}`,
-        description,
-        url: `${siteConfig.url}/industries/${slug}`,
-        type: "website",
-      },
-    };
-  } catch {
-    return { title: "Industry not found" };
-  }
-}
-
-export default async function CategoryPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-
-  let cat;
-  try {
-    cat = loadCategory(slug);
-  } catch {
-    notFound();
-  }
-
-  const meta = getIndustryBySlug(slug);
-  if (!meta) notFound();
+export default function ChemicalMachineryPage() {
+  const cat = loadCategory(SLUG);
+  const meta = getIndustryBySlug(SLUG);
+  if (!meta) return null;
   const Icon = meta.icon;
 
-  const related = industries.filter((i) => i.slug !== slug).slice(0, 3);
-  const products = getProductsByCategory(slug);
+  const related = industries
+    .filter((i) => i.slug !== SLUG)
+    .slice(0, 3);
+  const products = getProductsByCategory(SLUG);
 
   return (
     <>
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: "/" },
-          { name: "Industries", url: "/industries" },
-          { name: cat.title, url: `/industries/${slug}` },
+          { name: cat.title, url: "/chemical-machinery" },
         ]}
       />
       <FAQPageJsonLd faqs={cat.faq} />
 
-      {/* Hero — image-led with category banner */}
+      {/* Hero */}
       <section className="relative overflow-hidden">
-        {/* Full-width banner. On mobile we let content drive the height (min-h
-            ensures it never collapses, but tall titles can push it taller).
-            Larger screens use the cinematic aspect ratio. */}
         <div className="relative w-full min-h-[340px] sm:min-h-0 sm:aspect-[16/6] md:aspect-[21/7] sm:max-h-[520px] overflow-hidden bg-ink-900">
-          {/* Flipped horizontally so the artwork's white space sits behind the title and breadcrumbs on the left */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={encodeURI(meta.banner)}
@@ -206,7 +69,6 @@ export default async function CategoryPage({
             className="absolute inset-0 w-full h-full object-cover scale-x-[-1]"
             loading="eager"
           />
-          {/* Dark gradient for text legibility */}
           <div className="absolute inset-0 bg-gradient-to-r from-ink-950/85 via-ink-950/55 to-ink-950/30" />
           <div className="absolute inset-0 bg-gradient-to-t from-ink-950/60 to-transparent" />
 
@@ -216,10 +78,6 @@ export default async function CategoryPage({
                 <nav className="text-sm text-white/70 mb-4" aria-label="Breadcrumb">
                   <Link href="/" className="hover:text-white">
                     Home
-                  </Link>
-                  <span className="mx-2">/</span>
-                  <Link href="/industries" className="hover:text-white">
-                    Industries
                   </Link>
                   <span className="mx-2">/</span>
                   <span className="text-white">{cat.title}</span>
@@ -253,20 +111,14 @@ export default async function CategoryPage({
               <div className="lg:col-span-2">
                 <Prose text={cat.intro} size="lg" />
                 <div className="mt-7 flex flex-col sm:flex-row gap-3">
-                  <a
-                    href={siteConfig.webApp}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a href={siteConfig.webApp} target="_blank" rel="noopener noreferrer">
                     <Button variant="primary" size="lg">
                       Get Started
                       <ArrowRight className="h-5 w-5" />
                     </Button>
                   </a>
                   <a
-                    href={whatsappLink(
-                      `Hi, I'm interested in ${cat.title} on Yantra Biz.`,
-                    )}
+                    href={whatsappLink(`Hi, I'm interested in ${cat.title} on Yantra Biz.`)}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -278,7 +130,6 @@ export default async function CategoryPage({
                 </div>
               </div>
 
-              {/* Side panel — quick actions */}
               <aside className="lg:sticky lg:top-24 rounded-3xl border border-ink-200 bg-white p-6 shadow-soft">
                 <h2 className="font-display font-bold text-lg text-ink-900">
                   Buy or sell {cat.title.toLowerCase()}
@@ -352,7 +203,7 @@ export default async function CategoryPage({
         </section>
       )}
 
-      {/* Featured listings — only for categories with real product images */}
+      {/* Featured listings */}
       {products.length > 0 && (
         <section className="py-20 md:py-24 bg-gradient-to-b from-white via-ink-50/60 to-white">
           <Container>
@@ -476,20 +327,14 @@ export default async function CategoryPage({
                     </div>
                   </div>
                   <div className="flex flex-col gap-3 lg:items-end">
-                    <a
-                      href={siteConfig.webApp}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                    <a href={siteConfig.webApp} target="_blank" rel="noopener noreferrer">
                       <Button variant="accent" size="lg" className="w-full lg:w-auto">
                         Get Started
                         <ArrowRight className="h-5 w-5" />
                       </Button>
                     </a>
                     <a
-                      href={whatsappLink(
-                        `Hi, I'm interested in ${cat.title} on Yantra Biz.`,
-                      )}
+                      href={whatsappLink(`Hi, I'm interested in ${cat.title} on Yantra Biz.`)}
                       target="_blank"
                       rel="noopener noreferrer"
                     >

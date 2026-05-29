@@ -24,6 +24,12 @@ export type IndustryMeta = {
   iconColorClass: string;
   /** Path to the high-quality category banner (used on industries grid + detail page hero) */
   banner: string;
+  /**
+   * Optional URL override. When set, all site links (grids, nav, buy page)
+   * point here instead of the default /industries/[slug].
+   * The industry is also excluded from the dynamic [slug] route.
+   */
+  href?: string;
 };
 
 /**
@@ -33,7 +39,7 @@ export type IndustryMeta = {
  */
 export const industries: IndustryMeta[] = [
   {
-    slug: "agriculture-machinery",
+    slug: "agriculture-machinery-and-equipment",
     title: "Agriculture Machinery",
     short: "Agriculture",
     tagline:
@@ -81,7 +87,7 @@ export const industries: IndustryMeta[] = [
     banner: "/Category Banner/Hospital equipment.jpeg",
   },
   {
-    slug: "leather-processing",
+    slug: "leather-processing-machinery",
     title: "Leather Processing Machinery",
     short: "Leather",
     tagline:
@@ -93,7 +99,7 @@ export const industries: IndustryMeta[] = [
     banner: "/Category Banner/Leather processing machinery.jpeg",
   },
   {
-    slug: "plastic-machinery",
+    slug: "plastic-industrial-machinery",
     title: "Plastic Industrial Machinery",
     short: "Plastic",
     tagline:
@@ -105,7 +111,7 @@ export const industries: IndustryMeta[] = [
     banner: "/Category Banner/Plastic industrial machinery.jpeg",
   },
   {
-    slug: "beverage-food-processing",
+    slug: "food-processing-machine",
     title: "Beverage & Food Processing",
     short: "Food & Beverage",
     tagline:
@@ -127,6 +133,7 @@ export const industries: IndustryMeta[] = [
     iconBgClass: "bg-violet-50",
     iconColorClass: "text-violet-700",
     banner: "/Category Banner/Chemical industrial machinery.jpeg",
+    href: "/chemical-machinery",
   },
   {
     slug: "industrial-machinery",
@@ -141,7 +148,7 @@ export const industries: IndustryMeta[] = [
     banner: "/Category Banner/Industrial Machinery.jpeg",
   },
   {
-    slug: "material-handling",
+    slug: "material-handling-machine",
     title: "Material Handling Machinery",
     short: "Material Handling",
     tagline: "Lifting, conveying, warehouse, and manual handling equipment.",

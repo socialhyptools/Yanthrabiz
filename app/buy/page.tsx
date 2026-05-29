@@ -18,10 +18,10 @@ import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Buy Used Industrial Machinery — Verified Sellers, Global Listings",
+  title: "Buy Used Industrial Machinery & Equipment | YantraBiz",
   description:
-    "Browse thousands of verified used machinery listings on Yantra Biz. Filter by industry, condition, and location. Talk directly to sellers — no middlemen, no hidden fees.",
-  alternates: { canonical: "/buy" },
+    "Buy used industrial machinery and equipment across multiple industries at YantraBiz. Explore reliable machinery solutions for manufacturing, processing, and industrial operations.",
+  alternates: { canonical: "/buy/" },
 };
 
 const benefits = [
@@ -219,7 +219,7 @@ export default function BuyPage() {
               return (
                 <Link
                   key={ind.slug}
-                  href={`/industries/${ind.slug}`}
+                  href={ind.href ?? `/industries/${ind.slug}`}
                   className="group flex items-center gap-3 rounded-2xl border border-ink-200 bg-white p-4 hover:border-primary/20 hover:shadow-soft transition-all"
                 >
                   <div

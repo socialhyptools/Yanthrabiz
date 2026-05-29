@@ -9,10 +9,10 @@ import { Button } from "@/components/ui/Button";
 import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "About Yantra Biz — Global Marketplace for Used Industrial Machinery",
+  title: "About YantraBiz | Industrial & Used Machinery Marketplace",
   description:
-    "Yantra Biz connects buyers and verified sellers of pre-owned and refurbished industrial machinery across 11 industries and 16+ countries. Built to make machinery trade transparent, direct, and accessible.",
-  alternates: { canonical: "/about" },
+    "Learn about YantraBiz, a trusted marketplace for industrial and used machinery solutions. We connect buyers and sellers across multiple machinery industries with reliable equipment solutions.",
+  alternates: { canonical: "/about/" },
 };
 
 const values = [

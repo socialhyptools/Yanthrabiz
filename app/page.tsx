@@ -13,12 +13,15 @@ import { industries } from "@/lib/industries";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: `${siteConfig.name} | ${siteConfig.tagline}`,
-  description: siteConfig.description,
+  title: "Industrial Machinery Manufacturer in India | Industrial Equipment Supplier",
+  description:
+    "Leading industrial machinery manufacturer in India offering high-quality equipment, automation solutions, and customized machinery for various industries.",
+  keywords: "Industrial equipment supplier",
   alternates: { canonical: "/" },
   openGraph: {
-    title: `${siteConfig.name} | ${siteConfig.tagline}`,
-    description: siteConfig.description,
+    title: "Industrial Machinery Manufacturer in India | Industrial Equipment Supplier",
+    description:
+      "Leading industrial machinery manufacturer in India offering high-quality equipment, automation solutions, and customized machinery for various industries.",
     url: siteConfig.url,
     type: "website",
   },

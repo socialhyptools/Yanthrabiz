@@ -16,10 +16,10 @@ import { Button } from "@/components/ui/Button";
 import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Sell Used Industrial Machinery — Reach Buyers in 16+ Countries",
+  title: "Sell Used Industrial Machinery & Equipment | YantraBiz",
   description:
-    "List your pre-owned industrial machinery on Yantra Biz. Reach verified buyers worldwide. No success fees on direct deals, no broker chain — just buyers talking to sellers.",
-  alternates: { canonical: "/sell" },
+    "Sell used industrial machinery and equipment on YantraBiz. Connect with buyers across multiple industries and list your machinery on a trusted industrial marketplace.",
+  alternates: { canonical: "/sell/" },
 };
 
 const steps = [

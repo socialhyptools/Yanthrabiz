@@ -25,10 +25,10 @@ import { Button } from "@/components/ui/Button";
 import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Contact — Talk to the Yantra Biz Team",
+  title: "Contact Industrial Machinery Experts | Get Quote Today",
   description:
-    "Get in touch with Yantra Biz. WhatsApp, phone, or email — our team typically responds within two business hours.",
-  alternates: { canonical: "/contact" },
+    "Get in touch with our team for industrial machinery solutions, pricing, and enquiries. Contact us today for expert assistance and quick support.",
+  alternates: { canonical: "/contact/" },
 };
 
 const channels = [

@@ -12,12 +12,14 @@ import {
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "All Industries — Used Industrial Machinery Marketplace",
-  description: `Explore all ${industries.length} industries on Yantra Biz — agriculture, pharmaceutical, paper, plastic, leather, food and beverage, chemical, hospital, material handling, and more.`,
-  alternates: { canonical: "/industries" },
+  title: "Industrial Machinery Solutions | Explore Equipment Solutions in India",
+  description:
+    "Browse a wide range of industrial machinery categories including agriculture, food processing, pharmaceutical, and more. Find the right equipment for your needs.",
+  alternates: { canonical: "/industries/" },
   openGraph: {
-    title: `All Industries | ${siteConfig.name}`,
-    description: `Explore all ${industries.length} industries on Yantra Biz.`,
+    title: `Industrial Machinery Solutions | ${siteConfig.name}`,
+    description:
+      "Browse a wide range of industrial machinery categories including agriculture, food processing, pharmaceutical, and more. Find the right equipment for your needs.",
     url: `${siteConfig.url}/industries`,
   },
 };
@@ -74,7 +76,7 @@ export default function IndustriesIndexPage() {
               return (
                 <StaggerItem key={ind.slug}>
                   <Link
-                    href={`/industries/${ind.slug}`}
+                    href={ind.href ?? `/industries/${ind.slug}`}
                     className="group relative block h-full rounded-3xl overflow-hidden border border-ink-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-card hover:border-primary/20"
                   >
                     <div className="aspect-[16/10] relative overflow-hidden bg-ink-100">
