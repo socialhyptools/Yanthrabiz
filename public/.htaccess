@@ -7,6 +7,9 @@ RewriteCond %{HTTPS} !=on
 RewriteCond %{HTTP:X-Forwarded-Proto} !=https
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+# ----- Pass /blog/ requests to WordPress (skip all rules below) -----
+RewriteRule ^blog(/.*)?$ - [L]
+
 # ----- Strip www (canonical: non-www). Comment this block if the canonical host should be www. -----
 # RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
 # RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [L,R=301]
