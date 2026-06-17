@@ -20,6 +20,8 @@ const primaryLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
+const blogUrl = "https://yantrabiz.com/blog/";
+
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -176,6 +178,12 @@ export function Navbar() {
                   {link.label}
                 </Link>
               ))}
+              <a
+                href={blogUrl}
+                className="px-3 py-2 text-[15px] font-medium rounded-md transition-colors text-ink-700 hover:text-primary"
+              >
+                Blog
+              </a>
             </nav>
 
             {/* CTA */}
@@ -244,6 +252,14 @@ export function Navbar() {
                   </Link>
                 ))}
               </nav>
+
+              <a
+                href={blogUrl}
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center gap-2.5 py-3 px-3 text-lg font-semibold rounded-lg transition-colors text-ink-900 hover:bg-ink-50"
+              >
+                Blog
+              </a>
 
               <div className="mt-6">
                 <div className="text-xs font-semibold uppercase tracking-wider text-ink-400 mb-2 px-3">

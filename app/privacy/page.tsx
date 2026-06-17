@@ -7,7 +7,7 @@ import { Reveal } from "@/components/shared/Reveal";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description: `How ${siteConfig.name} collects, uses, and protects your information.`,
-  alternates: { canonical: "/privacy" },
+  alternates: { canonical: "/privacy/" },
 };
 
 export default function PrivacyPage() {

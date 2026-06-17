@@ -10,9 +10,9 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 # ----- Pass /blog/ requests to WordPress (skip all rules below) -----
 RewriteRule ^blog(/.*)?$ - [L]
 
-# ----- Strip www (canonical: non-www). Comment this block if the canonical host should be www. -----
-# RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-# RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [L,R=301]
+# ----- Force www (canonical: www.yantrabiz.com). Redirect non-www → www. -----
+RewriteCond %{HTTP_HOST} ^yantrabiz\.com$ [NC]
+RewriteRule ^ https://www.yantrabiz.com%{REQUEST_URI} [L,R=301]
 
 # ----- 301 Redirects: Old URLs → New URLs (permanent SEO-safe redirects) -----
 # These fire before the pretty-URL rule so they always match correctly.

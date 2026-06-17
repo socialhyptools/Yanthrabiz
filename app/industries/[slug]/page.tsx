@@ -38,70 +38,70 @@ const industryPageMeta: Record<
     title: "Agriculture Machinery and Equipment | Farm Equipment Supplier in India",
     description:
       "Looking for reliable agriculture machinery and equipment? We supply high-performance farm equipment for modern farming needs across India. Get a quote today.",
-    canonical: "/agriculture-machinery-and-equipment/",
+    canonical: "/industries/agriculture-machinery-and-equipment/",
     keywords: "agricultural machinery & equipment",
   },
   "food-processing-machine": {
     title: "Food Processing Machinery Manufacturer in India | Beverage Equipment",
     description:
       "Leading food processing machinery manufacturer in India providing beverage equipment, production machines, and customized solutions for industries.",
-    canonical: "/food-processing-machine/",
+    canonical: "/industries/food-processing-machine/",
     keywords: "food processing machinery",
   },
   "hospital-equipment": {
     title: "Medical & Hospital Equipment Manufacturer in India",
     description:
       "Leading manufacturer of hospital and medical equipment in India offering durable, high-performance solutions for healthcare facilities. Get a quote today.",
-    canonical: "/hospital-equipment/",
+    canonical: "/industries/hospital-equipment/",
     keywords: "hospital equipment",
   },
   "industrial-machinery": {
     title: "Industrial Machinery Supplier in India | Advanced Equipment",
     description:
       "Explore a wide range of industrial machinery and equipment for various industries. Trusted supplier in India offering reliable and efficient solutions. Enquire now.",
-    canonical: "/industrial-machinery/",
+    canonical: "/industries/industrial-machinery/",
     keywords: "industrial machinery",
   },
   "leather-processing-machinery": {
     title: "Leather Machinery Manufacturer in India | Leather Making Machine",
     description:
       "Leading leather machinery manufacturer in India providing tannery machines and processing equipment designed for durability and efficiency.",
-    canonical: "/leather-processing-machinery/",
+    canonical: "/industries/leather-processing-machinery/",
     keywords: "leather processing machinery",
   },
   "material-handling-machine": {
     title: "Material Handling Equipment Supplier in India | Industrial Solutions",
     description:
       "Discover reliable material handling machines and equipment for warehouses and industries. Trusted supplier in India offering efficient handling solutions. Enquire now.",
-    canonical: "/material-handling-machine/",
+    canonical: "/industries/material-handling-machine/",
     keywords: "material handling machine",
   },
   "miscellaneous-machinery": {
     title: "Miscellaneous Machinery | Industrial Machinery Solutions in India",
     description:
       "Explore a wide range of miscellaneous machinery and industrial solutions for various applications. Trusted supplier offering custom and specialized equipment. Enquire now.",
-    canonical: "/miscellaneous-machinery/",
+    canonical: "/industries/miscellaneous-machinery/",
     keywords: "miscellaneous machinery",
   },
   "paper-machinery": {
     title: "Paper Processing Machinery & Equipment Solutions in India",
     description:
       "Explore advanced paper industrial machinery for efficient production. Trusted supplier in India offering complete paper mill solutions. Enquire now.",
-    canonical: "/paper-machinery/",
+    canonical: "/industries/paper-machinery/",
     keywords: "paper machinery",
   },
   "pharmaceutical-machinery": {
     title: "Pharma Machinery Manufacturer in India | Pharmaceutical Equipment",
     description:
       "Leading pharma machinery manufacturer in India providing high-performance equipment for tablet, capsule, and packaging processes. Get a quote today.",
-    canonical: "/pharmaceutical-machinery/",
+    canonical: "/industries/pharmaceutical-machinery/",
     keywords: "pharmaceutical machinery",
   },
   "plastic-industrial-machinery": {
     title: "Plastic Industrial Machinery | Processing Equipment Supplier India",
     description:
       "Explore advanced plastic industrial machinery and processing equipment including injection moulding, extrusion, and recycling machines. Trusted supplier in India. Enquire now.",
-    canonical: "/plastic-industrial-machinery/",
+    canonical: "/industries/plastic-industrial-machinery/",
     keywords: "plastic industry machinery",
   },
 };

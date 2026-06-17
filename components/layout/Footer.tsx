@@ -146,6 +146,14 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <a
+                  href="https://yantrabiz.com/blog/"
+                  className="text-ink-400 hover:text-white transition-colors text-sm"
+                >
+                  Blog
+                </a>
+              </li>
+              <li>
                 <Link
                   href="/privacy"
                   className="text-ink-400 hover:text-white transition-colors text-sm"

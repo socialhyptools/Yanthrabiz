@@ -16,7 +16,7 @@ export const siteConfig = {
   ogImage: "/og-default.png",
 
   // ===== External destinations (where the marketing site sends visitors) =====
-  webApp: "https://www.yantrabiz.com/Yantra/web/login",
+  webApp: "https://yantrabiz.in/Yantrabiz/web/login",
   playStore:
     "https://play.google.com/store/apps/details?id=shopping.in.Yanthra",
   appStore: "https://apps.apple.com/in/app/yantrabiz/id6756346956",

@@ -7,7 +7,7 @@ import { Reveal } from "@/components/shared/Reveal";
 export const metadata: Metadata = {
   title: "Terms of Service",
   description: `The terms that govern your use of ${siteConfig.name}.`,
-  alternates: { canonical: "/terms" },
+  alternates: { canonical: "/terms/" },
 };
 
 export default function TermsPage() {
